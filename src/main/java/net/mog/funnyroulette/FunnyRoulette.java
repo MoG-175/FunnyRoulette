@@ -2,15 +2,25 @@ package net.mog.funnyroulette;
 
 import net.fabricmc.api.ModInitializer;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import net.fabricmc.fabric.api.event.player.PlayerBlockBreakEvents;
+import net.minecraft.world.World;
+import java.util.Random;
 
 public class FunnyRoulette implements ModInitializer {
-    public static final String MOD_ID = "funny-roulette";
-	public static final Logger LOGGER = LoggerFactory.getLogger(MOD_ID);
-
+    private static final Random rn = new Random();
+    private static final int defaultchance = 1_000_000;
+    private static int chance = defaultchance;
+    
 	@Override
 	public void onInitialize() {
-		LOGGER.info("Hello Fabric world!");
+        PlayerBlockBreakEvents.AFTER.register((world, player, pos, state, blockEntity) -> {
+            if (rn.nextInt(0, chance) == 0) {
+                player.damage(player.getDamageSources().explosion(null), 99999F);
+                world.createExplosion(null, pos.getX(), pos.getY(), pos.getZ(), 4.0F, false, World.ExplosionSourceType.TNT);
+                chance = defaultchance;
+            } else {
+                chance -= 1;
+            }
+        });
 	}
 }
