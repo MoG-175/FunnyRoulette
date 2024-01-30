@@ -16,7 +16,7 @@ public class FunnyRoulette implements ModInitializer {
         PlayerBlockBreakEvents.AFTER.register((world, player, pos, state, blockEntity) -> {
             if (rn.nextInt(0, chance) == 0) {
                 player.damage(player.getDamageSources().explosion(null), 99999F);
-                world.createExplosion(null, pos.getX(), pos.getY(), pos.getZ(), 4.0F, false, World.ExplosionSourceType.TNT);
+                world.createExplosion(null, player.getX(), player.getY(), player.getZ(), 4.0F, false, World.ExplosionSourceType.TNT);
                 chance = defaultchance;
             } else {
                 chance -= 1;
