@@ -1,0 +1,40 @@
+{
+	"schemaVersion": 1,
+	"id": "funny-roulette",
+	"version": "${version}",
+	"name": "Funny Roulette",
+	"description": "This Mod was made by MoG :)",
+	"authors": [
+		"MoG"
+	],
+	"contact": {
+		"homepage": "https://fabricmc.net/",
+		"sources": "https://github.com/FabricMC/fabric-example-mod"
+	},
+	"license": "MIT",
+	"icon": "assets/funny-roulette/icon.png",
+	"environment": "*",
+	"entrypoints": {
+		"main": [
+			"net.mog.funnyroulette.FunnyRoulette"
+		],
+        "client": [
+            "net.mog.funnyroulette.FunnyRouletteClient"
+        ],
+		"fabric-datagen": [
+			"net.mog.funnyroulette.FunnyRouletteDataGenerator"
+		]
+	},
+	"mixins": [
+		"funny-roulette.mixins.json"
+	],
+	"depends": {
+		"fabricloader": ">=0.15.6",
+		"minecraft": "~1.20.4",
+		"java": ">=17",
+		"fabric-api": "*"
+	},
+	"suggests": {
+		"another-mod": "*"
+	}
+}
